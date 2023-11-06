@@ -74,7 +74,20 @@ function App() {
       <div className='searcherSection'>
         <Searcher onChange={handleFilter}/>
         <h2>Employees list</h2>
-          <ul>
+        <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Role</th>
+
+          </tr>
+        </thead>
+        <tbody>
+        
           { list.filter((elem)=> { 
             if(elem.name.toLowerCase().includes(search.toString().toLowerCase())){
               return elem
@@ -89,9 +102,11 @@ function App() {
               return elem
             }
             
-          }).map(({id,name,email,age,role,phone})=> (<li key={id}>{name} - {email} - {age} - {phone} - {role}<button className='btn btn-danger m-1' onClick={()=>{handleDelete(id)}}>Delete</button></li>)
+          }).map(({id,name,email,age,role,phone})=> (<tr><td>{id}</td><td>{name}</td><td>{email}</td><td>{age}</td><td>{role}</td><td>{phone}</td><td><button className='btn btn-danger m-1' onClick={()=>{handleDelete(id)}}>Delete</button></td> </tr>)
           )}
-          </ul>
+         
+          </tbody>
+          </table>
       </div>
       <div className='addEmployee'>
        
