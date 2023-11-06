@@ -15,14 +15,13 @@ function App() {
   const [email, setEmail]=useState("");
   const [phone, setPhone]=useState("");
   const [search, setSearch]=useState("");
-  const [alertMessage, setAlertMessage]=useState("hola");
+  const [alertMessage, setAlertMessage]=useState("");
   const [alertColor, setAlertColor]=useState("");
 
   const handleSubmit=(e)=>{
     e.preventDefault();
 
     if(!name.trim()||!role.trim()||!age.trim()||!email.trim()||!phone.trim()){
-        alert("Llene los campos")
         setAlertMessage("Complete all the fields")
         setAlertColor("text-danger")
         return
