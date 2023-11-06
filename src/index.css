@@ -12,7 +12,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 100vh;
+   
     width: 70vw;
 }
 
@@ -21,6 +21,15 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 100vh;
+   
     width: 20vw;
+}
+.addEmployeeSection{
+
+  display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+
 }

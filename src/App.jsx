@@ -4,6 +4,8 @@ import {BaseEmployees} from './components/Employees';
 import './App.css'
 import Searcher from './components/Searcher';
 import Form from './components/Form';
+import List from './components/List';
+import Alert from './components/Alert';
 
 function App() {
   const [list, setList]=useState(BaseEmployees);
@@ -13,10 +15,21 @@ function App() {
   const [email, setEmail]=useState("");
   const [phone, setPhone]=useState("");
   const [search, setSearch]=useState("");
+  const [alertMessage, setAlertMessage]=useState("hola");
+  const [alertColor, setAlertColor]=useState("");
 
   const handleSubmit=(e)=>{
     e.preventDefault();
-  
+
+    if(!name.trim()||!role.trim()||!age.trim()||!email.trim()||!phone.trim()){
+        alert("Llene los campos")
+        setAlertMessage("Complete all the fields")
+        setAlertColor("text-danger")
+        return
+    }else{
+        setAlertMessage("Employee succesfully added!")
+        setAlertColor("text-success")
+    }
     const newEmployee={
       id:Date.now(),
       name:name,
@@ -74,44 +87,12 @@ function App() {
       <div className='searcherSection'>
         <Searcher onChange={handleFilter}/>
         <h2>Employees list</h2>
-        <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Age</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Role</th>
-
-          </tr>
-        </thead>
-        <tbody>
-        
-          { list.filter((elem)=> { 
-            if(elem.name.toLowerCase().includes(search.toString().toLowerCase())){
-              return elem
-            }
-            if(elem.age.toLowerCase().includes(search.toString().toLowerCase())){
-              return elem
-            }
-            if(elem.role.toLowerCase().includes(search.toString().toLowerCase())){
-              return elem
-            }
-            if(elem.email.toLowerCase().includes(search.toString().toLowerCase())){
-              return elem
-            }
-            
-          }).map(({id,name,email,age,role,phone})=> (<tr><td>{id}</td><td>{name}</td><td>{email}</td><td>{age}</td><td>{role}</td><td>{phone}</td><td><button className='btn btn-danger m-1' onClick={()=>{handleDelete(id)}}>Delete</button></td> </tr>)
-          )}
-         
-          </tbody>
-          </table>
+        <List list={list} search={search} handleOnClick={handleDelete}></List>
       </div>
-      <div className='addEmployee'>
+      <div className='addEmployeeSection'>
        
        <Form onSubmit={handleSubmit} onChangeEmail={handleOnChangeEmail} onChangeName={handleOnChangeName} onChangePhone={handleOnChangePhone} onChangeAge={handleOnChangeAge} onChangeRole={handleOnChangeRole}/>
-       
+       <Alert alertMessage={alertMessage} alertColor={alertColor}></Alert>
      </div>
        
     </div>
