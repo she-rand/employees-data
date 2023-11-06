@@ -32,7 +32,7 @@ const List = ({handleOnClick:handleOnClick,list:list,search:search} ) => {
                         return elem
                     }
                     
-                }).map(({id,name,email,age,role,phone})=> (<tr><td>{id}</td><td>{name}</td><td>{email}</td><td>{age}</td><td>{role}</td><td>{phone}</td><td><button className='btn btn-danger m-1' onClick={handleOnClick}>Delete</button></td> </tr>)
+                }).map(({id,name,email,age,role,phone})=> (<tr><td>{id}</td><td>{name}</td><td>{email}</td><td>{age}</td><td>{role}</td><td>{phone}</td><td><button className='btn btn-danger m-1' onClick={()=>{handleOnClick(id)}}>Delete</button></td> </tr>)
                 )}
                 
                 </tbody>
